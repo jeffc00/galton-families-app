@@ -1,0 +1,48 @@
+---
+title: 'Galton Families App'
+author: "Jeff C"
+date: "5/4/2020"
+output:
+  ioslides_presentation:
+    widescreen: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## How to Use the App
+Using the data provided by Galton Families dataset, we fit a linear model to predict a child's height based on the gender and parent's average height.
+
+## Galton Families Dataset
+The data used in the app comes from the GaltonFamilies dataset contained in the HistData package. 
+
+```{r}
+library(HistData)
+data(GaltonFamilies)
+```
+
+## Summary of the Dataset
+```{r}
+summary(GaltonFamilies)
+```
+
+
+## Scatterplot of the Data
+```{r fig.align='center'}
+plot(jitter(GaltonFamilies$childHeight) ~ GaltonFamilies$midparentHeight,
+     xlab = "Avg Height of the Parents (in inches)",
+     ylab = "Height of the Child (in inches)",
+     pch = 19,
+     frame.plot = FALSE,
+     col = ifelse(GaltonFamilies$gender=="female", "red", "blue"))
+
+legend(73,
+       60,
+       pch = c(19, 19),
+       col = c("red", "blue"),
+       c("female", "male"),
+       bty="o",
+       cex=.8)
+```
+
